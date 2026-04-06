@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8f5f0;
+  --foreground: #333333;
+  --primary: #8b5a2b;
+  --secondary: #d2b48c;
+  --accent: #a0522d;
+  --border: #e6d7c3;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.arch-card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-105;
+}
+
+.btn-primary {
+  @apply bg-primary text-white px-6 py-3 rounded-md hover:bg-accent transition-colors duration-300;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-primary px-6 py-3 rounded-md hover:bg-opacity-80 transition-colors duration-300;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-bold text-primary mb-6 border-b-2 border-secondary pb-2;
+}
+
+.card-title {
+  @apply text-xl font-semibold text-primary mb-2;
+}
+
+.question-card {
+  @apply bg-white rounded-lg shadow-md p-6 mb-6;
+}
+
+.option-btn {
+  @apply w-full text-left p-4 border border-border rounded-md mb-3 hover:bg-secondary hover:bg-opacity-20 transition-colors duration-300;
+}
+
+.option-btn.correct {
+  @apply bg-green-100 border-green-500;
+}
+
+.option-btn.incorrect {
+  @apply bg-red-100 border-red-500;
+}
+
+.difficulty-btn {
+  @apply p-6 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 border-2;
+}
+
+.difficulty-btn.easy {
+  @apply border-green-400 bg-green-50 hover:bg-green-100;
+}
+
+.difficulty-btn.medium {
+  @apply border-blue-400 bg-blue-50 hover:bg-blue-100;
+}
+
+.difficulty-btn.hard {
+  @apply border-red-400 bg-red-50 hover:bg-red-100;
+}
+
+.progress-bar {
+  @apply h-4 bg-border rounded-full overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-full bg-primary transition-all duration-500;
+}
+
+/* 古代风格装饰 */
+.arch-decoration {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="20" viewBox="0 0 100 20"><path d="M0,10 Q25,0 50,10 T100,10" stroke="%238b5a2b" stroke-width="1" fill="none"/></svg>');
+  background-repeat: repeat-x;
+  background-size: 100px 20px;
+  height: 20px;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .section-title {
+    @apply text-2xl;
+  }
+  
+  .arch-card {
+    @apply mb-4;
+  }
+}
