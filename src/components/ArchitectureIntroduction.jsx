@@ -1,7 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const ArchitectureIntroduction = () => {
   const [activeTab, setActiveTab] = useState('overview');
+  
+  // 音频状态
+  const [isPlaying, setIsPlaying] = useState(true);
+  const audioRef = useRef(null);
+  
+  // 初始化音频
+  useEffect(() => {
+    // 创建音频对象
+    audioRef.current = new Audio('建筑介绍BGM.mp3');
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.3;
+    
+    // 自动播放音频
+    audioRef.current.play().catch(error => {
+      console.error('音频播放失败:', error);
+    });
+    
+    // 清理函数
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+  
+  // 音频控制函数
+  const toggleAudio = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch(error => {
+          console.error('音频播放失败:', error);
+        });
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
 
   const tabs = [
     { id: 'overview', label: '建筑概述' },
@@ -14,7 +53,16 @@ const ArchitectureIntroduction = () => {
 
   return (
     <div className="fade-in">
-      <h2 className="section-title">古代建筑科普</h2>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="section-title">古代建筑科普</h2>
+        <button 
+          className={`audio-toggle-btn ${isPlaying ? 'playing' : ''}`}
+          onClick={toggleAudio}
+          aria-label={isPlaying ? '暂停音乐' : '播放音乐'}
+        >
+          {isPlaying ? '🔊 暂停音乐' : '🔇 播放音乐'}
+        </button>
+      </div>
       <p className="text-lg mb-8">
         中国古代建筑有着悠久的历史和独特的风格，是中华民族传统文化的重要组成部分。
         通过本模块的学习，您将了解中国古代建筑的主要类型、特点和代表作品，为闯关游戏做好准备。
