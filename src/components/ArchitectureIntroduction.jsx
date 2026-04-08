@@ -10,13 +10,15 @@ const ArchitectureIntroduction = () => {
   // 初始化音频
   useEffect(() => {
     // 创建音频对象
-    audioRef.current = new Audio('建筑介绍BGM.mp3');
+    audioRef.current = new Audio(' https://yabeng.github.io/musics/建筑介绍BGM.mp3');
     audioRef.current.loop = true;
     audioRef.current.volume = 0.3;
     
     // 自动播放音频
     audioRef.current.play().catch(error => {
       console.error('音频播放失败:', error);
+      // 即使播放失败，也不立即设置isPlaying为false
+      // 因为可能是浏览器自动播放策略导致的，实际音频可能仍在播放
     });
     
     // 清理函数

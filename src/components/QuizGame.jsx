@@ -241,7 +241,7 @@ const QuizGame = () => {
   // 初始化音频
   useEffect(() => {
     // 创建音频对象
-    audioRef.current = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+    audioRef.current = new Audio(' https://yabeng.github.io/musics/闯关游戏BGM.mp3');
     audioRef.current.loop = true;
     audioRef.current.volume = 0.3;
     
